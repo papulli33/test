@@ -3,25 +3,25 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using System.Xml.Linq;
 using OpenQA.Selenium.Internal;
+using System;
 
 namespace Selenium
 {
-    internal class Program
+    internal class Program:InfoLogin
     {
         static void Main(string[] args)
         {
             IWebDriver driver = new ChromeDriver();
-            //LogFile toFile = new LogFile();
-            Login.start(driver);
-            //FilterLayers.start(driver);
-            //FilterbyGeometryType.start(driver);
-            //FilterbyDataType.start(driver);
+            IElements elements = new Elements();
+            LogFile toFile = new ();
+            Login.Start(driver,elements);
+            FilterLayers.start(driver);
             CoordinateInput.start(driver);
-            //ZoomMap.start(driver);
-            //ToolbarZoom.start(driver);
-            //AltlikHaritalar.start(driver);
-            //Print.start(driver);
-            //toFile.stop();
+            ZoomMap.start(driver);
+            ToolbarZoom.start(driver);
+            BaseMaps.start(driver);
+            Print.start(driver);
+            toFile.Stop();
         }
 
     }

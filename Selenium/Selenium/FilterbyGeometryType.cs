@@ -11,6 +11,9 @@ namespace Selenium
     {
         public static void start(IWebDriver driver)
         {
+            // Raster için bilgi tutuluyor fakat wms ve vektör veri için karışıklık olacağı için bunların testini yapabilmek için kod bazında düzenlenme yapılmalıdır.     
+
+
             IWebElement filterbyLayers = driver.FindElement(By.Id("teo_toc_toolbar_filter_button"));
             filterbyLayers.Click();
             Thread.Sleep(1000);

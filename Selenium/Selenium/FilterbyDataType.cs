@@ -11,6 +11,10 @@ namespace Selenium
     {
         public static void start(IWebDriver driver)
         {
+            // Test edilemiyor çünkü site içerisinde bunu kontrol edecek bir bilgi yok.
+
+
+
             IWebElement filterbyLayers = driver.FindElement(By.XPath("/html/body/div[1]/div/div/div[2]/div/div/div/div/div[1]/div[2]/div[2]/span/span[1]/span"));
             filterbyLayers.Click();
             Thread.Sleep(1000);

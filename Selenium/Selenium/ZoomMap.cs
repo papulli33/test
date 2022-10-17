@@ -20,26 +20,31 @@ namespace Selenium
             
             IWebElement scaleFirst = driver.FindElement(By.XPath("/html/body/div[3]/div[1]/input"));
             string firstScaleValue = scaleFirst.GetAttribute("value");
-            int firstNumber = Convert.ToInt32(firstScaleValue.ToString());
-            Thread.Sleep(1000);
+            int firstNumber = Convert.ToInt32(firstScaleValue);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
 
             IWebElement clickingZoom = driver.FindElement(By.XPath("/html/body/div[5]/button[2]"));
-            Actions builder = new Actions(driver);
+            Actions builder = new (driver);
             builder.MoveByOffset(50,40).DoubleClick(clickingZoom).Build().Perform();
-            Thread.Sleep(1000);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
 
             IWebElement scaleSecond = driver.FindElement(By.XPath("/html/body/div[3]/div[1]/input"));
+            Thread.Sleep(2000);
             string secondScaleValue = scaleSecond.GetAttribute("value");
-            int secondNumber = Convert.ToInt32(secondScaleValue.ToString());
-            Thread.Sleep(1000);
+            int secondNumber = Convert.ToInt32(secondScaleValue);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
 
             if (firstNumber > secondNumber)
             {
-                Console.WriteLine("It is working success.");
+                DateTime now = DateTime.Now;
+                var jh = (TestName: typeof(ZoomMap).Name, version: "1.0", Date: now, Status: "Successfully");
+                Console.WriteLine($"Test Name : {jh.TestName} || Version : {jh.version} || Status : {jh.Status} || Date: {jh.Date}.");
             }
-            else if (firstNumber <= secondNumber)
+            else 
             {
-                Console.WriteLine("It has bug.");
+                DateTime now = DateTime.Now;
+                var jh = (TestName: typeof(ZoomMap).Name, version: "1.0", Date: now, Status: "Unsuccessfully");
+                Console.WriteLine($"Test Name : {jh.TestName} || Version : {jh.version} || Status : {jh.Status} || Date: {jh.Date}.");
             }
 
 

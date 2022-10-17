@@ -1,2 +1,7 @@
-Test is fail. . Filter layers
-It is working success.
+Test Name : Login || Version : 1.0 || Status : Successfully || Date: 10/17/2022 2:13:20 PM.
+Test Name : FilterLayers || Version : 1.0 || Status : Unsuccessfully || Date: 10/17/2022 2:13:25 PM.
+Test Name : CoordinateInput || Version : 1.0 || Status : Successfully || Date: 10/17/2022 2:13:26 PM.
+Test Name : ZoomMap || Version : 1.0 || Status : Successfully || Date: 10/17/2022 2:13:29 PM.
+Test Name : ToolbarZoom || Version : 1.0 || Status : Successfully || Date: 10/17/2022 2:13:32 PM.
+Test Name : BaseMaps || Version : 1.0 || Status : Successfully || Date: 10/17/2022 2:13:32 PM.
+Test Name : Print || Version : 1.0 || Status : Successfully || Date: 10/17/2022 2:14:36 PM.

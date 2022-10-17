@@ -10,17 +10,17 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace Selenium
 {
-    internal class FilterLayers
+    internal class FilterLayers:InfoLayer
     {
         public static void start(IWebDriver driver)
         {
             var testResults = new List<string>();
-            //Test 1
-            IWebElement search = driver.FindElement(By.XPath("/html/body/div[1]/div/div/div[2]/div/div/div/div/div[1]/div[2]/div[1]/input"));
-            string nameParsel = "MEGSİS Parselleri";
-            search.SendKeys(nameParsel);
 
-            Thread.Sleep(1000);
+            //Test 1
+            IWebElement searchParsel = driver.FindElement(By.XPath("/html/body/div[1]/div/div/div[2]/div/div/div/div/div[1]/div[2]/div[1]/input"));
+            searchParsel.SendKeys(nameParsel);
+
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
 
             IWebElement parsel = driver.FindElement(By.XPath("/html/body/div[1]/div/div/div[2]/div/div/div/div/div[2]"));
             var parselchild = parsel.FindElements(By.XPath("./child::*"));
@@ -33,15 +33,19 @@ namespace Selenium
             {
                 IWebElement dropdownParsel = driver.FindElement(By.XPath("/html/body/div[1]/div/div/div[2]/div/div/div/div/div[2]/div[1]/div[1]/button")); 
                 dropdownParsel.Click();
-                Thread.Sleep(500);
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+
                 IWebElement featuresParsel = driver.FindElement(By.XPath("/html/body/div[1]/div/div/div[2]/div/div/div/div/div[2]/div[1]/div[1]/div[3]/div[2]/a"));
                 featuresParsel.Click();
-                Thread.Sleep(500);
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+
                 IWebElement nicknameParsel = driver.FindElement(By.XPath("/html/body/div[4]/div/div[2]/div/div/div[1]/div/div[2]/div/input"));
                 string LayerNameParsel = nicknameParsel.GetAttribute("value");
-                Thread.Sleep(500);
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+
                 IWebElement closeParsel = driver.FindElement(By.XPath("/html/body/div[4]/div/div[1]/div[2]/div[2]"));
                 closeParsel.Click();
+
                 if (nameParsel == LayerNameParsel)
                 {
                     testResults.Add("Success");
@@ -52,21 +56,20 @@ namespace Selenium
                 }
             }
 
-            Thread.Sleep(2000);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
 
             for (int i = 0; i <= 17; i++)
             {
-                IWebElement delete = driver.FindElement(By.XPath("/html/body/div[1]/div/div/div[2]/div/div/div/div/div[1]/div[2]/div[1]/input"));
-                search.SendKeys(Keys.Backspace);
+                IWebElement deleteParsel = driver.FindElement(By.XPath("/html/body/div[1]/div/div/div[2]/div/div/div/div/div[1]/div[2]/div[1]/input"));
+                deleteParsel.SendKeys(Keys.Backspace);
             };
-            Thread.Sleep(2000);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
 
             //Test 2
-            IWebElement search1 = driver.FindElement(By.XPath("/html/body/div[1]/div/div/div[2]/div/div/div/div/div[1]/div[2]/div[1]/input"));
-            string nameKisla = "Kışla";
-            search.SendKeys(nameKisla);
+            IWebElement searchKisla = driver.FindElement(By.XPath("/html/body/div[1]/div/div/div[2]/div/div/div/div/div[1]/div[2]/div[1]/input"));
+            searchKisla.SendKeys(nameKisla);
 
-            Thread.Sleep(1000);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
 
             IWebElement kisla = driver.FindElement(By.XPath("/html/body/div[1]/div/div/div[2]/div/div/div/div/div[2]"));
             var kislachild = kisla.FindElements(By.XPath("./child::*"));
@@ -78,15 +81,19 @@ namespace Selenium
             {
                 IWebElement dropdownKisla = driver.FindElement(By.XPath("/html/body/div[1]/div/div/div[2]/div/div/div/div/div[2]/div/div/button")); //?
                 dropdownKisla.Click();
-                Thread.Sleep(500);
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+
                 IWebElement featuresKisla = driver.FindElement(By.XPath("/html/body/div[1]/div/div/div[2]/div/div/div/div/div[2]/div/div/div[3]/div[2]/a"));
                 featuresKisla.Click();
-                Thread.Sleep(500);
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+
                 IWebElement nicknameKisla = driver.FindElement(By.XPath("/html/body/div[4]/div/div[2]/div/div/div[1]/div/div[2]/div/input"));
                 string LayerNameKisla = nicknameKisla.GetAttribute("value");
-                Thread.Sleep(500);
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+
                 IWebElement closeKisla = driver.FindElement(By.XPath("/html/body/div[4]/div/div[1]/div[2]/div[2]"));
                 closeKisla.Click();
+
                 if (nameKisla == LayerNameKisla)
                 {
                     testResults.Add("Success");
@@ -98,20 +105,20 @@ namespace Selenium
             }
 
 
-            Thread.Sleep(2000);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+
             for (int i = 0; i <= 5; i++)
             {
-                IWebElement delete1 = driver.FindElement(By.XPath("/html/body/div[1]/div/div/div[2]/div/div/div/div/div[1]/div[2]/div[1]/input"));
-                search1.SendKeys(Keys.Backspace);
+                IWebElement deleteKisla = driver.FindElement(By.XPath("/html/body/div[1]/div/div/div[2]/div/div/div/div/div[1]/div[2]/div[1]/input"));
+                deleteKisla.SendKeys(Keys.Backspace);
             };
-            Thread.Sleep(2000);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
 
             //Test 3
-            IWebElement search2 = driver.FindElement(By.XPath("/html/body/div[1]/div/div/div[2]/div/div/div/div/div[1]/div[2]/div[1]/input"));
-            string nameMahalle = "Mahalle";
-            search.SendKeys(nameMahalle);
+            IWebElement searchMahalle = driver.FindElement(By.XPath("/html/body/div[1]/div/div/div[2]/div/div/div/div/div[1]/div[2]/div[1]/input"));
+            searchMahalle.SendKeys(nameMahalle);
 
-            Thread.Sleep(1000);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
 
             IWebElement mahalle = driver.FindElement(By.XPath("/html/body/div[1]/div/div/div[2]/div/div/div/div/div[2]"));
             var mahallechild = mahalle.FindElements(By.XPath("./child::*"));
@@ -123,15 +130,19 @@ namespace Selenium
             {
                 IWebElement dropdownMahalle = driver.FindElement(By.XPath("/html/body/div[1]/div/div/div[2]/div/div/div/div/div[2]/div/div/button"));
                 dropdownMahalle.Click();
-                Thread.Sleep(500);
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+
                 IWebElement featuresMahalle = driver.FindElement(By.XPath("/html/body/div[1]/div/div/div[2]/div/div/div/div/div[2]/div[1]/div[1]/div[3]/div[2]/a"));
                 featuresMahalle.Click();
-                Thread.Sleep(500);
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+
                 IWebElement nicknameMahalle = driver.FindElement(By.XPath("/html/body/div[4]/div/div[2]/div/div/div[1]/div/div[2]/div/input"));
                 string LayerNameMahalle = nicknameMahalle.GetAttribute("value");
-                Thread.Sleep(500);
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+
                 IWebElement closeMahalle = driver.FindElement(By.XPath("/html/body/div[4]/div/div[1]/div[2]/div[2]"));
                 closeMahalle.Click();
+
                 if (nameMahalle == LayerNameMahalle)
                 {
                     testResults.Add("Success");
@@ -142,22 +153,27 @@ namespace Selenium
                 }
             }
 
-            Thread.Sleep(2000);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
 
             for (int i = 0; i <= 7; i++)
             {
-                IWebElement delete2 = driver.FindElement(By.XPath("/html/body/div[1]/div/div/div[2]/div/div/div/div/div[1]/div[2]/div[1]/input"));
-                search2.SendKeys(Keys.Backspace);
+                IWebElement deleteMahalle = driver.FindElement(By.XPath("/html/body/div[1]/div/div/div[2]/div/div/div/div/div[1]/div[2]/div[1]/input"));
+                deleteMahalle.SendKeys(Keys.Backspace);
             };
-            Thread.Sleep(2000);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+
 
             if (testResults.Contains("Success, Success, Success"))
             {
-                Console.WriteLine("Test is succcess. Filter layers");
+                DateTime now = DateTime.Now;
+                var jh = (TestName: typeof(FilterLayers).Name, version: "1.0", Date: now, Status: "Successfully");
+                Console.WriteLine($"Test Name : {jh.TestName} || Version : {jh.version} || Status : {jh.Status} || Date: {jh.Date}.");
             }
             else
             {
-                Console.WriteLine("Test is fail. . Filter layers");
+                DateTime now = DateTime.Now;
+                var jh = (TestName: typeof(FilterLayers).Name, version: "1.0", Date: now, Status: "Unsuccessfully");
+                Console.WriteLine($"Test Name : {jh.TestName} || Version : {jh.version} || Status : {jh.Status} || Date: {jh.Date}.");
 
             }
 

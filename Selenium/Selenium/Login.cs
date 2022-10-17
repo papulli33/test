@@ -7,26 +7,45 @@ using System.Threading.Tasks;
 
 namespace Selenium
 {
-    internal class Login
+    internal class Login: InfoLogin
     {
-        public static void start(IWebDriver driver)
+        public static void Start(IWebDriver driver,IElements elements)
         {
-            driver.Navigate().GoToUrl("http://130.185.119.179:83/src/Login.html");
-            Thread.Sleep(1000);
+            driver.Navigate().GoToUrl(urlLogin);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
 
-            IWebElement username = driver.FindElement(By.Id("teo_login_user"));
-            username.SendKeys("Administrator");
-            Thread.Sleep(1000);
+            IElements elementUsername = new Elements();
+            elementUsername.usernameLocation(driver);
 
-            IWebElement password = driver.FindElement(By.Id("teo_login_password"));
-            password.SendKeys("jistbis2022*");
-            Thread.Sleep(1000);
 
-            IWebElement buton = driver.FindElement(By.Id("teo_login_submit"));
-            buton.Click();
+            IElements elementPassword = new Elements();
+            elementPassword.passwordLocation(driver);
+
+
+            IElements elementButon = new Elements();
+            elementButon.loginButon(driver);
+
+            IElements alert = new Elements();
+            alert.alert(driver);
 
             driver.Manage().Window.Maximize();
-            Thread.Sleep(2000);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+
+            String currentURL = driver.Url;
+            if (currentURL == urlRelease)
+            {
+                DateTime now = DateTime.Now;
+                var jh = (TestName: typeof(Login).Name, version: "1.0", Date: now, Status: "Successfully");
+                Console.WriteLine($"Test Name : {jh.TestName} || Version : {jh.version} || Status : {jh.Status} || Date: {jh.Date}.");
+            }
+            else
+            {
+                DateTime now = DateTime.Now;
+                var jh = (TestName: typeof(Login).Name, version: "1.0", Date: now, Status: "Unsuccessfully");
+                Console.WriteLine($"Test Name : {jh.TestName} || Version : {jh.version} || Status : {jh.Status} || Date: {jh.Date}.");
+            }
+
         }
     }
+
 }

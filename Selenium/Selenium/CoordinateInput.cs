@@ -11,31 +11,42 @@ using System.Diagnostics;
 
 namespace Selenium
 {
-    internal class CoordinateInput: Helper
+    internal class CoordinateInput 
     {
         public static void start(IWebDriver driver)
         {
             IWebElement sourceCoordinate = driver.FindElement(By.XPath("/html/body/div[2]"));
-            Actions builder = new Actions(driver);
-            builder.DoubleClick().Build().Perform();
+            Actions builder = new (driver);
 
             // First Coordinate
-            (string, string) First = Helper.coordinate(driver, "map", "teo_map_coordinate_component_main_input");
+            builder.MoveToElement(sourceCoordinate).DoubleClick().Perform();
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
 
-            //Second Coordinate;
-            (string, string) Second = Helper.coordinate(driver, "map","teo_map_coordinate_component_main_input");
+            IWebElement firstCoordinate = driver.FindElement(By.Id("teo_map_coordinate_component_main_input"));
+            string first = firstCoordinate.GetAttribute("value");
 
-            if (First != Second)
+            //Second Coordinate
+            builder.MoveToElement(sourceCoordinate).MoveByOffset(50, 40).Perform();
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+
+            IWebElement secondCoordinate = driver.FindElement(By.Id("teo_map_coordinate_component_main_input"));
+            string second = secondCoordinate.GetAttribute("value");
+
+            if (first != second)
             {
-                Debug.WriteLine("It is working success. Coordinate input");
+                DateTime now = DateTime.Now;
+                var jh = (TestName: typeof(CoordinateInput).Name, version: "1.0", Date: now, Status: "Successfully");
+                Console.WriteLine($"Test Name : {jh.TestName} || Version : {jh.version} || Status : {jh.Status} || Date: {jh.Date}.");
             }
-            else if (First == Second)
+            else if (first == second)
             {
-                Debug.WriteLine("It has bug. Coordinate input");
+                DateTime now = DateTime.Now;
+                var jh = (TestName: typeof(CoordinateInput).Name, version: "1.0", Date: now, Status: "Unsuccessfully");
+                Console.WriteLine($"Test Name : {jh.TestName} || Version : {jh.version} || Status : {jh.Status} || Date: {jh.Date}.");
             }
 
 
-            Thread.Sleep(2000);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
 
         }
     }

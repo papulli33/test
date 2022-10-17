@@ -33,12 +33,11 @@ namespace Selenium
 
             Console.SetOut(writer);
         }
-        public void stop()
+        public void Stop()
         {
             Console.SetOut(oldOut);
             writer.Close();
             ostrm.Close();
-            Console.WriteLine("Done");
         }
     }
 }
